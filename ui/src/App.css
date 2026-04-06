@@ -1,0 +1,64 @@
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0c0c0c;--surface:#141414;--border:#222;
+  --text:#e8e8e8;--muted:#555;--green:#4ade80;--red:#f87171;
+  font-family:-apple-system,"Inter",sans-serif;
+}
+body{background:var(--bg);color:var(--text);height:100vh;overflow:hidden}
+.app{height:100vh;display:flex;align-items:center;justify-content:center}
+
+.composer,.progress,.done{
+  width:100%;max-width:560px;padding:0 24px;
+  display:flex;flex-direction:column;gap:20px;
+}
+.wordmark{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.tagline{font-size:22px;font-weight:400;line-height:1.4}
+.preflight-log{font-size:11px;color:var(--muted);font-family:monospace;white-space:pre-wrap;line-height:1.6}
+
+.input{
+  width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  color:var(--text);font-size:15px;line-height:1.6;padding:16px;
+  resize:none;outline:none;transition:border-color .2s;font-family:inherit;
+}
+.input:focus{border-color:#333}
+.input::placeholder{color:var(--muted)}
+
+.row{display:flex;align-items:center;gap:16px}
+.build-btn{
+  background:var(--text);color:var(--bg);border:none;border-radius:8px;
+  font-size:14px;font-weight:600;padding:10px 24px;cursor:pointer;
+  transition:opacity .2s;flex-shrink:0;
+}
+.build-btn:disabled{opacity:.3;cursor:default}
+.build-btn:not(:disabled):hover{opacity:.85}
+.hint{font-size:12px;color:var(--muted)}
+
+.progress{gap:32px}
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{display:flex;align-items:center;gap:12px;opacity:.25;transition:opacity .3s}
+.step--running,.step--done,.step--failed{opacity:1}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--muted);flex-shrink:0;transition:background .3s}
+.step--running .dot{background:var(--text);animation:pulse 1.2s infinite}
+.step--done .dot{background:var(--green)}
+.step--failed .dot{background:var(--red)}
+.label{font-size:13px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+.done{gap:16px}
+.done-msg{font-size:22px;font-weight:400}
+.done-path{font-size:11px;color:var(--muted);font-family:monospace}
+.done-row{display:flex;gap:12px}
+.open-btn{
+  background:var(--text);color:var(--bg);border:none;border-radius:8px;
+  font-size:14px;font-weight:600;padding:10px 24px;cursor:pointer;
+}
+.reset-btn{
+  background:transparent;color:var(--muted);border:1px solid var(--border);
+  border-radius:8px;font-size:14px;padding:10px 24px;cursor:pointer;
+}
+.reset-btn:hover{color:var(--text);border-color:#333}
+.err{
+  font-size:11px;color:var(--red);font-family:monospace;white-space:pre-wrap;
+  background:var(--surface);border:1px solid var(--border);border-radius:6px;
+  padding:12px;max-height:160px;overflow-y:auto;
+}
